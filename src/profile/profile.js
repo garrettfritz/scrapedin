@@ -42,6 +42,7 @@ module.exports = async (browser, cookies, url, waitTimeToScrapMs = 500, hasToGet
   const [aboutAlternative] = await scrapSection(page, template.aboutAlternative)
   const positions = await scrapSection(page, template.positions)
   const educations = await scrapSection(page, template.educations)
+  const certifications = await scrapSection(page, template.certifications)
   const [recommendationsCount] = await scrapSection(page, template.recommendationsCount)
   const recommendationsReceived = await scrapSection(page, template.recommendationsReceived)
   const recommendationsGiven = await scrapSection(page, template.recommendationsGiven)
@@ -52,6 +53,7 @@ module.exports = async (browser, cookies, url, waitTimeToScrapMs = 500, hasToGet
   const projects = await scrapAccomplishmentPanel(page, 'projects')
   const volunteerExperience = await scrapSection(page, template.volunteerExperience)
   const peopleAlsoViewed = await scrapSection(page, template.peopleAlsoViewed)
+
 
   await page.close()
   logger.info(`finished scraping url: ${url}`)
@@ -64,6 +66,7 @@ module.exports = async (browser, cookies, url, waitTimeToScrapMs = 500, hasToGet
     aboutAlternative,
     positions,
     educations,
+    certifications,
     skills,
     recommendations: {
       givenCount: recommendationsCount ? recommendationsCount.given : "0",

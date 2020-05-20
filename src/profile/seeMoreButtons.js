@@ -38,7 +38,18 @@ const clickAll = async(page) => {
     }
   }
 
-  return
-}
+  const certMoreButtonSelector =
+    'section[id=certifications-section]  button.pv-profile-section__see-more-inline';
+  while (await page.$(certMoreButtonSelector)) {
+    await page.click(certMoreButtonSelector);
+    try {
+      await page.waitForSelector(certMoreButtonSelector, { timeout: 500 });
+    } catch (error) {
+      // no more 'More' buttons to click
+    }
+  }
+
+  return;
+};
 
 module.exports = { clickAll }

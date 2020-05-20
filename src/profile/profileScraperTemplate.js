@@ -79,6 +79,27 @@ module.exports = {
       date2: '.pv-entity__dates time:nth-child(2)'
     }
   },
+  certifications: {
+    selector: 'section[id=certifications-section] li',
+    fields: {
+      title: 'h3',
+      provider: 'span:nth-child(2)',
+      logo: {
+        selector: '.pv-entity__logo > img',
+        attribute: 'src',
+      },
+      url: {
+        selector: 'a',
+        attribute: 'href',
+      },
+      certification: {
+        selector: 'a.pv-certifications-entity__credential-link',
+        attribute: 'href',
+      },
+      receivedDate: 'p:nth-child(3) > span:nth-child(2)',
+      expirationDate: 'p:nth-child(3) > span:nth-child(2) > span',
+    },
+  },
   skills: {
     selector: '.pv-skill-category-entity__skill-wrapper',
     fields: {

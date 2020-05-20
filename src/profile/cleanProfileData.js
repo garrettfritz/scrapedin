@@ -110,6 +110,36 @@ module.exports = (profile) => {
       }),
     );
   }
-  
-  return profile
-}
+
+  if (profile.certifications) {
+    profile.certifications = profile.certifications.map((certification) => {
+      if (certification.receivedDate) {
+        if (certification.receivedDate.startsWith('Issued ')) {
+          const receivedDate = certification.receivedDate
+            .replace(certification.expirationDate, '')
+            .replace(/Issued /, '');
+
+          // format if month and year, or only year given
+          const formattedReceivedDate =
+            receivedDate.split(' ').length > 1
+              ? `1 ${receivedDate}`
+              : receivedDate;
+
+          const formattedDate = new Intl.DateTimeFormat('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          }).format(new Date(formattedReceivedDate));
+
+          certification.receivedDate = formattedDate;
+        } else {
+          // In case of no issued date in the section
+          delete certification.receivedDate;
+        }
+      }
+      return certification;
+    });
+  }
+
+  return profile;
+};

@@ -37,6 +37,16 @@ it('should get complete profile', async () => {
         year: fakeEvalResult
       }
     ],
+    certifications: [
+      {
+        date1: fakeEvalResult,
+        date2: fakeEvalResult,
+        provider: fakeEvalResult,
+        certificate: fakeEvalResult,
+        url: fakeEvalResult,
+        title: fakeEvalResult
+      }
+    ],
     educations: [
       {
         date1: fakeEvalResult,
@@ -166,6 +176,16 @@ it('should get an incomplete profile', async () => {
     ],
     contact: {},
     courses: [{}],
+    certifications: [
+      {
+        date1: '',
+        date2: '',
+        provider: '',
+        certificate: '',
+        url: '',
+        title: ''
+      }
+    ],
     educations: [
       {
         date1: '',
